@@ -1,0 +1,177 @@
+<html>
+<body style="background-color:9999FF;">
+
+<hr />
+<hr />
+<h1><a name="top">Automated Car Parking</a></h1>
+<hr />
+<hr />
+<br/><br/>
+<br/><br/>
+
+<p><a href="#b_f"><p style="font-size:110%">A Brief Description</p></a></p>
+<a href="#r_e"><p style="font-size:110%">Required Equipments</p></a>
+<a href="#h_w"><p style="font-size:110%">How it works?</p></a>
+<a href="#b_d"><p style="font-size:110%">Block Diagram</p></a>
+<a href="#a_g"><p style="font-size:110%">Algorithm</p></a>
+<a href="#p_d"><p style="font-size:110%">Detailed Pin Diagram</p></a>
+<a href="#p_f"><p style="font-size:110%">Problems Faced</p></a>
+<a href="#p_g"><p style="font-size:110%">Group Members Information</p></a>
+<a href="#p_h"><p style="font-size:110%">Course Teacher</p></a>
+
+
+<br/><br/>
+<br/><br/>
+<hr />
+<h2><a name="b_f">A Brief Description</a></h2>
+<hr />
+<p style="font-size:120%">
+In this Project we have designed a car parking system that will allow parking services for some authorised cars only. The authorisation will be checked by ar RFID module. And we have two PIR sensors on both sides of the gate which will detect if the car is coming in or going out. <br/><br/>
+</p>
+<br/><br/>
+<br/><br/>
+
+
+<hr />
+<h2><a name="r_e">Required Equipments</a></h2>
+<hr />
+<p style="font-size:120%">
+<ul>
+  <li><p style="font-size:120%">ATmega32 microcontroller</p></li>
+  <li><p style="font-size:120%">RFID module and a few RFID cards</p></li>
+  <li><p style="font-size:120%">PIR sensors</p></li>
+<li><p style="font-size:120%">servo motor</p></li>
+<li><p style="font-size:120%">LCD module</p></li>
+<li><p style="font-size:120%">LED bulbs</p></li>
+</ul>
+</p>
+<br/><br/>
+<br/><br/>
+
+
+<hr />
+<h2><a name="h_w">How it works?</a></h2>
+<hr />
+<p style="font-size:120%">
+In this project we have designed a system that will help us with secured car parking. Also, when the car comes in front of the gate, the gate will open automatically sensing the existence of a car. We have used PIR sensors for this purpose. When a car comes, it needs to punch a card to the RFID module. If it is authorised, then it will get green signal to move forward. When it comes infront of the gate, to the PIR sensor precisely, the gate will open. When it passes through the gate and crosses the other sensor inside also, the gate will close down.
+If the car is not recognized by the RFID module, then the gate will not open at any case. In case of going out, PIR sensor detects a car inside the gate, and it opens the gate to let the car pass through. Similarly when it crosses the sensor outside, the gate closes. We will keep the gates open for a maximum of 15 seconds. If no action takes place after openning the gate within 15 seconds, the sytem will be reset, and the gate will be closed, allowing nobody to pass.
+</p>
+<br/><br/>
+<br/><br/>
+
+
+<hr />
+<h2><a name="b_d">Block Diagram</a></h2>
+<hr />
+<br/><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<img src="block diagram.png" alt="pin diagram" align="top" width="720" height="500" />
+
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+fig.1 Block Diagram
+</p>
+<br/><br/>
+<br/><br/>
+
+<hr />
+<h2><a name="a_g">Algorithm</a></h2>
+<hr />
+<br/><br/>
+<p style="font-size:120%">
+1. Start<br/>
+.....2. Both PIR, RFID and MOTOR set to initial condition<br/>
+.....3. LCD shows the current car count<br/>
+.....4. System waits for a signal<br/>
+..........5. System checks Elapsed Time<br/>
+...............6. If Elapsed Time crossed limit and Any one PIR sensed a car<br/>
+....................7. If the gate is open<br/>
+.........................8. Close the gate<br/>
+.........................9. All sensors set to initial condition<br/>
+..........10. If car number is below capacity<br/>
+...............11. If a card is punched<br/>
+....................12. Check authorization<br/>
+..........13. Else Show "Capacity Full" massage on LCD<br/>
+..........14. If outer PIR senses a car<br/>
+...............15. If inner PIR already sensed that car<br/>
+....................16. Close the gate<br/>
+....................17. Decrease count by one and update on LCD<br/>
+....................18. Set both PIR to initial condition<br/>
+...............19. Else if the car is authorized<br/>
+....................20. Open the gate<br/>
+..........21. If inner PIR senses a car<br/>
+...............22. If outer PIR already sensed that car<br/>
+....................23. Close the gate<br/>
+....................24. Increase count by one and update on LCD<br/>
+....................25. Set both PIR to initial condition<br/>
+...............26. Else open the gate<br/>
+..........27. Go to (4)<br/>
+28. End<br/>
+</p>
+     
+
+<br/><br/>
+<br/><br/>
+
+<hr />
+<h2><a name="p_d">Detailed Pin Diagram</a></h2>
+<hr />
+<br/><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<img src="pin diagram.png" alt="pin diagram" align="top" width="720" height="720" />
+
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+fig.2 Pin Diagram
+
+<br/><br/>
+<br/><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+</body>
+</html>
+
+<br/><br/>
+<br/><br/>
+
+
+<hr />
+<h2><a name="p_f">Problems Faced</a></h2>
+<hr />
+
+<ol>
+  <li><p style="font-size:120%">The most diffiult problem we had to solve is to manage the data received through the RFID module. At times it was giving inconsistent results.</p></li>
+    
+  <li><p style="font-size:120%">We were facing problems to maintain the sensitivity of PIR sensors. It was sensing the slightest of movements like a finger, air from electric fans, a light turning on.</p></li>
+    
+  <li><p style="font-size:120%">We faced problems with the LCD. Sometimes it was showing garbage characters, even without any change in circuits or codes.</p></li>
+
+  <li><p style="font-size:120%">Power source management was a problem we faced. We used two arduinos, only for supplying 5V power. The servo motor, as well as the RFID module required direct 5V power, without any parallel connection. We used our AVR burners to power up the other circuits.</p></li>
+</ol>
+</p>
+<br/><br/>
+<br/><br/>
+
+<hr />
+<h2><a name="p_g">Group Members Information</a></h2>
+<hr />
+<h3><p style="font-size:120%">Section B1: Group 5</p></h3>
+<ul>
+  <li><p style="font-size:120%">Fardin Zaman (16050008)</p></li>
+  <li><p style="font-size:120%">Muhammad Abdullah Al Aziz (1605020)</p></li>
+  <li><p style="font-size:120%">Jainta Paul (1605022)</p></li>
+  
+</ul>
+<br/><br/>
+<br/><br/>
+
+<hr />
+<h2><a name="p_h">Course Teachers</a></h2>
+<hr />
+<ol>
+  <li><p style="font-size:120%">Tareq Mahmood, Lecturer, CSE, BUET.</p></li>
+  <li><p style="font-size:120%">Md. Masum Mushfiq, Lecturer, CSE, BUET.</p></li>
+</ol>
+
+<br/><br/>
+<br/><br/>
+
+<a href="#top"><p style="font-size:110%">Back to top</p></a>
